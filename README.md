@@ -1,4 +1,4 @@
-# dsl-junction
+# dsl-hub
 
 # Storage to Jenkins Groovy DSLs
 
