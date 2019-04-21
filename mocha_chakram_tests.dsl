@@ -11,15 +11,15 @@ preflightJob()
 
 def preflightJob() {
 
-    return freeStyleJob("mocha-chakram-tests") {
+    return freeStyleJob("qa-ind-fiction-api-js-chakram-mocha") {
 
         // set up GitHub repo path and credentials
    		scm {
        	 	git {
             	remote {
-            		github('ShwetankVashishtha/mocha-chakram-tests')
+            		github('ShwetankVashishtha/qa-ind-fiction-api-js-chakram-mocha')
                 	credentials('f93b716c-1d56-4503-aa51-1b6b1b3ca387')
-                	url('https://github.com/ShwetankVashishtha/mocha-chakram-tests.git')
+                	url('https://github.com/ShwetankVashishtha/qa-ind-fiction-api-js-chakram-mocha.git')
             	}
                 extensions {
                     cloneOptions {
@@ -63,7 +63,7 @@ yarn test
         // Allows to publish archive artifacts
         publishers {
             publishHtml {
-                report('${JENKINS_HOME}/workspace/mocha-chakram-tests/mochawesome-report/') {
+                report('${JENKINS_HOME}/workspace/qa-ind-fiction-api-js-chakram-mocha/mochawesome-report/') {
                     reportName('HTML Report')
                     reportFiles('mochawesome.html')
                     keepAll()
