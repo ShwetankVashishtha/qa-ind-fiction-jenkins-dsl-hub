@@ -30,7 +30,7 @@ def preflightJob() {
         }
 
         //define maven goals
-        goals('clean install test')
+        goals('clean install test sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=20ee5864239873ffbd75f8c0dff93298db4fc4e7')
 
         // Manages how long to keep records of the builds.
         logRotator {
