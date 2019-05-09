@@ -95,7 +95,7 @@ def postflightJob(constants, branch) {
                         content('$PROJECT_DEFAULT_CONTENT')
                         contentType('text/html')
                         sendTo {
-                            recipientList('svashishthal@blackberry.com')
+                            recipientList('vashishthashwetank@gmail.com')
                         }
                     }
                 }
