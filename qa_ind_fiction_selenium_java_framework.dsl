@@ -1,15 +1,15 @@
 def branchesParam = binding.variables.get('BRANCHES')
-def branches = branchesParam ? branchesParam.split(' ') : ['AG3-GW_master', 'AG3-GW_patch', 'AG3-GW_release', 'GCS_iOS_dev_x9', 'GCS_iOS_release_x9']
+def branches = branchesParam ? branchesParam.split(' ') : ['qa', 'dev', 'load', 'pa']
 
 def constants = [
 
     // generic params
-    project: 'BB Work',
+    project: 'QA Fiction',
     component: 'iOS',
     branches: branches,
-    name: 'SeeTest',
+    name: 'Test Automation',
     label: 'server-not-defined',
-    username: 'niravpatel'
+    username: ''
 
 ]
 
@@ -30,14 +30,14 @@ def postflightJob(constants, branch) {
     return mavenJob("${constants.component}/${branch}-${constants.name}") {
         // Sets a display name for the project.
         displayName("${friendlyLabel} ${friendlyBranch}").with {
-            description 'BB Work iOS Automation execution built on Maven with latest code committed on Perforce.'
+            description ''
         }
         
         // Root pom.xml path
         rootPOM("pom.xml")
 
         // Set goals and option to execute with maven
-        goals("-DlabName=onprem -DtestSuite=email/Email_07 -DskipReport=false clean install test")
+        goals("-DlabName=onprem -DskipReport=false clean install test")
 
         // Allows Jenkins to schedule and execute multiple builds concurrently.
         concurrentBuild()
@@ -70,14 +70,7 @@ def postflightJob(constants, branch) {
         }
 
         scm {
-            def username = constants.username
-            // Perforce P4 plug in to fetch latest code
-            p4('//depot/automation/atf/iOS/dev/...', "${username}") {
-                node - >
-                node / p4Port('perforce.corp.good.com:3666')
-                node / p4Tool('C:/Program Files/Perforce/p4.exe')
-                node / exposeP4Passwd('false')
-            }
+
         }
 
         // Adds build steps to the jobs.
