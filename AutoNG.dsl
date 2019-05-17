@@ -1,4 +1,4 @@
-def branchesParam = binding.variables.get('BRANCHES')
+dsdef branchesParam = binding.variables.get('BRANCHES')
 def branches = branchesParam ? branchesParam.split(' ') : ['qa', 'dev', 'load', 'pa']
 
 def constants = [
